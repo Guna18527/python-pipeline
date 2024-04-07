@@ -9,5 +9,19 @@ pipeline {
             }
         }
         
+	 stage('Test') {
+            steps {
+                sh 'test'
+            }
+        }
     }
+
+     post {
+        always {
+            echo 'post build action'
+            build job: 'python'
+            build job: 'maven project'
+        }
+    }
+
 }
